@@ -10,10 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import br.com.jvm.projetolivraria.model.dao.LivrariaDao;
 import br.com.jvm.projetolivraria.model.entidades.Livro;
 
-@WebServlet(urlPatterns = { "/LivrariaController", "/main", "/insert", "/select", "/update", "/delete" })
+@WebServlet(urlPatterns = { "/LivrariaController", "/main", "/insert", "/select", "/update", "/delete", "/report" })
 public class LivrariaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	LivrariaDao livrariaDao = new LivrariaDao();
@@ -38,6 +44,8 @@ public class LivrariaController extends HttpServlet {
 			editarLivro(request, response);
 		} else if (action.equals("/delete")) {
 			removerLivro(request, response);
+		} else if (action.equals("/report")) {
+			gerarRelatorio(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -147,6 +155,48 @@ public class LivrariaController extends HttpServlet {
 		// Redirecionar para o documento livraria.jsp (atualizando as alterações)
 		response.sendRedirect("main");
 
+	}
+
+	// Gerar Relatório em PDF
+	protected void gerarRelatorio(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		Document documento = new Document();
+		try {
+			//Tipo de conteudo
+			response.setContentType("apllication/pdf");
+			//Nome do documento
+			response.addHeader("Content-Disposition", "inline; filename=" + "livros.pdf");
+			//Criar o documento
+			PdfWriter.getInstance(documento, response.getOutputStream());
+			//Abrir o documento para gerar o conteúdo
+			documento.open();
+			documento.add(new Paragraph("Lista de livros:"));
+			documento.add(new Paragraph(" "));
+			//Criar uma tabela
+			PdfPTable tabela = new PdfPTable(4);
+			//Cabeçalho
+			PdfPCell col1 = new PdfPCell (new Paragraph("Titulo"));
+			PdfPCell col2 = new PdfPCell (new Paragraph("Genero"));
+			PdfPCell col3 = new PdfPCell (new Paragraph("Quantidade de paginas"));
+			PdfPCell col4 = new PdfPCell (new Paragraph("Isbn"));
+			tabela.addCell(col1);
+			tabela.addCell(col2);
+			tabela.addCell(col3);
+			tabela.addCell(col4);
+			//Popular a tabela com os livros
+			ArrayList<Livro> lista = livrariaDao.listarLivros();
+			for (int i = 0; i < lista.size(); i++) {
+				tabela.addCell(lista.get(i).getTitulo());
+				tabela.addCell(lista.get(i).getGenero());
+				tabela.addCell(lista.get(i).getQuantidadePaginas());
+				tabela.addCell(lista.get(i).getIsbn());
+			}
+			documento.add(tabela);
+			documento.close();
+		} catch (Exception e) {
+			System.out.println(e);
+			documento.close();
+		}
 	}
 
 }

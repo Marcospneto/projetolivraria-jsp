@@ -15,6 +15,7 @@ ArrayList<Livro> lista = (ArrayList<Livro>) request.getAttribute("livros");
 <body>
 	<h1>Livros</h1>
 	<a href="novo.html" class="Botao1">Novo Livro </a>
+	<a href = "report" class="Botao2">Relatório</a>
 	<table id = "tabela">
 		<thead>
 			<tr>
