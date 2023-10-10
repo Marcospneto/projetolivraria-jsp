@@ -1,47 +1,24 @@
 package br.com.jvm.projetolivraria.model.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import br.com.jvm.projetolivraria.connection.ConnectionBanco;
 import br.com.jvm.projetolivraria.model.entidades.Livro;
 
 public class LivrariaDao {
-	// Modulo de Conexão
-	// Parâmetros de conexão
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://127.0.0.1:3306/dblivraria?useTimezone=true&serverTimezone=UTC";
-	private String user = "root";
-	private String password = "1234567";
-
-	// Método de conexão
-	private Connection conectar() {
-		Connection con = null;
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, user, password);
-			return con;
-
-		} catch (Exception e) {
-			System.out.println(e);
-			return null;
-		}
-
-	}
-	/*
-	 * //Teste de conexão public void testeConexao() { try { Connection con =
-	 * conectar(); System.out.println(con); con.close(); } catch (Exception e) {
-	 * System.out.println(e); } }
-	 */
+	private static ConnectionBanco connectionBanco = new ConnectionBanco();
+	
+	
 
 	// CRUD CREATE
 	public void inserirLivro(Livro livro) {
 		String create = "insert into livros (titulo, genero, quantidadePaginas, isbn) values (?, ?, ?, ?)";
 		try {
 			// Abrir conexão com o banco
-			Connection con = conectar();
+			Connection con = connectionBanco.getConnection();
 			PreparedStatement pst = con.prepareStatement(create);
 			// substituir os parametros (?) pelo conteudo das variaveis Livro
 			pst.setString(1, livro.getTitulo());
@@ -61,7 +38,7 @@ public class LivrariaDao {
 		ArrayList<Livro> livros = new ArrayList<>();
 		String read = "select * from livros order by titulo";
 		try {
-			Connection con = conectar();
+			Connection con = connectionBanco.getConnection();
 			PreparedStatement pst = con.prepareStatement(read);
 			ResultSet rs = pst.executeQuery();
 			// O laço abaixo será executado enquanto houver livros
@@ -87,7 +64,7 @@ public class LivrariaDao {
 	public void selecionarLivro(Livro livro) {
 		String read2 = "select * from livros where id = ?";
 		try {
-			Connection con = conectar();
+			Connection con = connectionBanco.getConnection();
 			PreparedStatement pst = con.prepareStatement(read2);
 			pst.setLong(1, livro.getId());
 			ResultSet rs = pst.executeQuery();
@@ -108,7 +85,7 @@ public class LivrariaDao {
 	public void alterarLivro(Livro livro) {
 		String create = "update livros set titulo=?, genero=?, quantidadePaginas=?, isbn=? where id=?";
 		try {
-			Connection con = conectar();
+			Connection con = connectionBanco.getConnection();
 			PreparedStatement pst = con.prepareStatement(create);
 		
 			pst.setString(1, livro.getTitulo());
@@ -127,7 +104,7 @@ public class LivrariaDao {
 	public void deletarLivro(Livro livro) {
 		String delete = "delete from livros where id=?";
 		try {
-			Connection con = conectar();
+			Connection con = connectionBanco.getConnection();
 			PreparedStatement pst = con.prepareStatement(delete);
 			pst.setLong(1, livro.getId());
 			pst.executeUpdate();
@@ -136,6 +113,8 @@ public class LivrariaDao {
 			System.out.println(e);
 		}
 	}
+	
+	
 
 	
 

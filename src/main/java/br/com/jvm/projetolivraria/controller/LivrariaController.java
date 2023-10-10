@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Paragraph;
@@ -33,6 +34,7 @@ public class LivrariaController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
+		
 		System.out.println(action);
 		if (action.equals("/main")) {
 			livros(request, response);
@@ -69,7 +71,7 @@ public class LivrariaController extends HttpServlet {
 		 */
 		// Encaminhar a lista ao documento livraria.jsp
 		request.setAttribute("livros", lista);
-		RequestDispatcher rd = request.getRequestDispatcher("livraria.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("principal/livraria.jsp");
 		rd.forward(request, response);
 	}
 
@@ -109,7 +111,7 @@ public class LivrariaController extends HttpServlet {
 		request.setAttribute("quantidadePaginas", livro.getQuantidadePaginas());
 		request.setAttribute("isbn", livro.getIsbn());
 		// Encaminhar ao documento editar.jsp
-		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("principal/editar.jsp");
 		rd.forward(request, response);
 
 	}

@@ -17,19 +17,19 @@
 			</tr>
 			<tr>
 				<td><input type="text" name="titulo" class="Caixa1"
-				 value="<%out.print(request.getAttribute("titulo"));%>">></td>
+				 value="<%out.print(request.getAttribute("titulo"));%>"></td>
 			</tr>
 			<tr>
 				<td><input type="text" name="genero" class="Caixa1"
-				 value="<%out.print(request.getAttribute("genero")); %>">></td>
+				 value="<%out.print(request.getAttribute("genero")); %>"></td>
 			</tr>
 			<tr>
 				<td><input type="text" name="quantidadePaginas" class="Caixa2"
-				 value="<%out.print(request.getAttribute("quantidadePaginas")); %>">></td>
+				 value="<%out.print(request.getAttribute("quantidadePaginas")); %>"></td>
 			</tr>
 			<tr>
 				<td><input type="text" name="isbn" class="Caixa2"
-				 value="<%out.print(request.getAttribute("isbn")); %>">></td>
+				 value="<%out.print(request.getAttribute("isbn")); %>"></td>
 			</tr>
 
 		</table>

@@ -16,7 +16,7 @@
 				<td><input type="text" name="genero" placeholder="Genero" class="Caixa1"></td>
 			</tr>
 			<tr>
-				<td><input type="text" name="quantidadePaginas" placeholder="Quantidade de Páginas" class="Caixa2"> </td>
+				<td><input type="text" name="quantidadePaginas" placeholder="Quantidade de Paginas" class="Caixa2"></td>
 			</tr>
 			<tr>
 				<td><input type="text" name="isbn" placeholder="Isbn" class="Caixa2"></td>
