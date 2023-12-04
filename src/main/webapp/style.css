@@ -3,10 +3,26 @@
 	url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap')
 	;
 
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 1em;
 	font-weight: 400;
+}
+.icons {
+	    bottom:10px;
+        position: fixed;
+        width: 90%;
+        text-align: center;
+}
+
+.contener {
+	margin-top: 7rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: inherit;
+	
 }
 
 h1 {
@@ -23,18 +39,9 @@ h1 {
 	
 	
 	border-color: red solid;
-	width: 340px;
-	margin: 2% 41%; 
-	padding: 0%;
-	margin-top:5%;
+	margin: auto; 
+	margin-top: 60px;
 	
-}
-.imglogin {
-	
-	width: 500px;
-	margin-left: 35%;
-	padding: 0px;
-	margin-top: 5%;
 }
 
 .entrarlogin {
@@ -42,10 +49,33 @@ h1 {
 	
 }
 
+.contener div img {
+	transform: scale(1.2);
+	
+}
+
+
+Body {
+	
+	background-color: #E4EEFD;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100vh;
+    width: 100vw;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	
+}
+
 
 .Botao1 {
 	text-decoration: none;
-	background-color: #000;
+	background-color: green;
 	padding: 5px 10px 5px 10px;
 	color: #fff;
 	font-size: 1.2em;
@@ -53,12 +83,14 @@ h1 {
 	border-radius: 5px;
 	border: 0;
 	cursor: pointer;
-	margin-right: 10px;
+	margin-left: 125px; 
+	margin-top: 40px;
+	
 }
 
 .Botao2 {
 	text-decoration: none;
-	background-color: #d51213;
+	background-color: green;
 	padding: 5px 10px 5px 10px;
 	color: #fff;
 	font-size: 1.2em;
@@ -82,7 +114,28 @@ h1 {
 	margin-right: 10px;
 	float: right;
 	margin-right: 933px;
+	position: fixed;
+	left: 95%; 
+	top: 1%;
 }
+
+.h1livros {
+	background-image: url("imagens/h1livros.png");
+	
+}
+
+.id {
+	margin-left: 20px; 
+	margin-top: 20px;
+	width: 30px;
+	
+}
+
+.genero {
+	width: 100px;
+	
+}
+
 
 
 .Caixa1 {
@@ -101,6 +154,7 @@ h1 {
 	border-radius: 5px;
 }
 
+
 #caixa3 {
 	padding: 5px;
 	margin-bottom: 10px;
@@ -109,19 +163,211 @@ h1 {
 
 #tabela {
 	margin-top: 30px;
+	font-family: Arial, serif;
+	font-size: 15px;
+	position: fixed;
+	left: 8%; 
+
+}
+
+.menu {
+	background: black;
+	width: 250px;
+	align-content: left;
+	padding: 10%;
 	
 }
+
 
 #tabela th {
-	border: 1px solid #ddd;
-	padding: 10px;
-	text-align: left;
-	background-color: #008000;
+	margin-bottom: 5px;
+	text-align: center;
+	background-image:url("imagens/tabelafundoverde.png") ;
 	color: #fff;
-}
+	border: 1px solid black;
+	padding: 5px;
+	background-color: rgb (240, 248, 255);
+	
+	
+}	
 
 #tabela td {
-	border: 1px solid #ddd;
-	padding: 10px;
 	
+	border: 1px solid black;
+	padding: 5px;
+	background-image:url("imagens/tabelabaixo.jpeg");
+	text-align: center;
 }
+
+<!-- -->
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #fff;
+}
+
+p {
+    cursor: pointer;
+    font-weight: 600;
+    color: slateblue;
+}
+
+h1 {
+    font-size: 1.8em;
+    color: slateblue;
+    padding: 0px 0px 35px 15px;
+}
+
+h2 {
+    font-size: 1.4em;
+    color: slateblue;
+}
+
+input {
+    width: 80%;
+    height: 30px;
+    border: none;
+    border-bottom: 1px solid silver;
+    outline: none;
+    font-weight: 600;
+    color: #1c1c1c;
+    padding-left: 3px;
+}
+
+.buttonEntrar {
+    cursor: pointer;
+    width: 120px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background:  #785eef;
+    margin-top: 35px;
+    margin-left: 90px;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+     background-image: url('imagens/bodylivraria.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+main {
+	margin-left: 300px;
+}
+    #container {
+        width: 320px;
+        height: 520px;
+        border-radius: 10px;
+        -webkit-box-shadow: 0px 0px 6px -1px #000000; 
+        box-shadow: 0px 0px 6px -1px #000000;
+        background: #785eef;
+
+        display: flex;
+        align-items: center;
+    } 
+
+
+        #container .banner {
+            width: 520px;
+            height: 520px;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            background: #e4eefd;
+
+            display: none;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        #container .box-login {
+            width: 320px;
+            height: 520px;
+            border-radius: 10px;
+            background: #fff;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .box-login .box {
+                width: 80%;
+                height: 320px;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+
+                .box .social {
+                    width: 240px;
+                    height: 42px;
+
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                }
+
+                    .social img {
+                        cursor: pointer;
+                    }
+
+            .box-login .box-account {
+                width: 80%;
+                height: 360px;
+
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+    
+    #bubble {
+        cursor: pointer;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        right: 15px;
+        bottom: 15px;
+        border-radius: 50%;
+        border: 1px solid #483D8B;
+        background: slateblue;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    @media (min-width: 1024px) {
+        #container {
+            width: 902px;
+            justify-content: space-between;
+        }  
+
+            #container .banner {
+                display: flex;
+            }
+
+            #container .box-login {
+                width: 385px;
+                border-radius: 10px 10px 10px 0px;
+            }
+}
+ <!---->
+ 
+/* Defina estilos personalizados aqui */
+

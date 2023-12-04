@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ page import="br.com.jvm.projetolivraria.model.entidades.Livro"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+ArrayList<Livro> lista = (ArrayList<Livro>) request.getAttribute("livros");
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +17,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <meta name="description" content="" />
 <meta name="author" content="" />
-<title>Novo Livro</title>
+<title>Search</title>
 <link
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
 	rel="stylesheet" />
@@ -32,8 +42,6 @@ response.setDateHeader("Expires", 0); // Proxies.
 
 
 
-
-		<!-- Navbar Search-->
 		<form
 			class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
 			action="procurarLivro" method="get">
@@ -46,7 +54,6 @@ response.setDateHeader("Expires", 0); // Proxies.
 				</button>
 			</div>
 		</form>
-
 
 
 
@@ -78,18 +85,21 @@ response.setDateHeader("Expires", 0); // Proxies.
 								<i class="fas fa-tachometer-alt"></i>
 							</div> Pagina Inicial
 						</a>
-
+			
+			
+					<c:if test="${perfil == 'administrador'}" >
 						<div class="sb-sidenav-menu-heading">Interface</div>
 						<a class="nav-link collapsed" href="mainUsuario">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
-							</div> Usuários Cadastrados
+							</div> UsuÃ¡rios Cadastrados
 						</a> <a class="nav-link collapsed" href="novo.jsp">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-book-open"></i>
 							</div> Adicionar Livro
 						</a>
-
+					</c:if>
+					
 					</div>
 				</div>
 
@@ -103,73 +113,37 @@ response.setDateHeader("Expires", 0); // Proxies.
 
 				<div class="session-title-cards">
 					<div class="container-fluid px-4">
-						<h1 class="mt-4">CoffeBook</h1>
+						<h1 class="h1Pesquisa">Pesquisa:</h1>
 						<ol class="breadcrumb mb-4">
-							<li class="breadcrumb-item active">Sua opnião literária é a
-								peça-chave para enriquecer nossa comunidade de leitores!</li>
+
 						</ol>
 					</div>
 				</div>
+				<div class="container-cards">
+					<div class="cardProcurarLivro">
+						<div class="img-card">
+							<img style="max-width: 300px" src="imagens/newlogo.png">
+						</div>
+						<div class="card-details">
+							<p>Titulo: ${livroEncontrado.titulo}</p>
+							<p>Autor: ${livroEncontrado.autor}</p>
 
-				<div class="container">
-					<h1 class="titulo">Adicionar novo livro</h1>
-					
-					<form enctype="multipart/form-data" name="frmLivro" action="insert">
-						<div class="form-group">
-							<input type="text" name="titulo" placeholder="Título"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<input type="text" name="genero" placeholder="Gênero"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<input type="text" name="quantidadePaginas"
-								placeholder="Quantidade de Páginas" class="form-control">
-						</div>
-						<div class="form-group">
-							<input type="text" name="isbn" placeholder="ISBN"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<input type="text" name="sinopse" placeholder="Sinopse"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<input type="text" name="autor" placeholder="Autor"
-								class="form-control">
-						</div>
-			
-			<!--  
-			<img alt="Imagem User" id="fotoembase64" src="" width="70px">
-			
-			
-			
-			<div class="form-group">
-    
-    			<label>Imagem do Livro:</label>
-    					<input type="file" id="fileFoto" name="fileFoto" accept="image/*" 
-					onchange="visualizarImg('fotoembase64','fileFoto');" class="form-control-file" 
-					style="margin-top:15px; margin-left:5px;">
-			</div>
-		
-		<button type="submit">Enviar</button>
-		-->
-						
-					  	<input type="button" value="Adicionar" class="btn btn-primary"
-							onclick="validar()">
 
-					
-					
-				
-					
-					
-					<!--  <input type="file" name="imagem" id="imagemLivro" 
-    				class="form-control" placeholder="Imagem">-->
-					
-					</form>
+						<c:if test="${perfil == 'administrador'}" >
+							<a class="bt"
+								href="select?id=<%=((Livro) request.getAttribute("livroEncontrado")).getId()%>">Editar</a>
+							<a class="bt"
+								href="javascript: confirmar(<%=((Livro) request.getAttribute("livroEncontrado")).getId()%>)">Excluir</a>
+
+
+						</c:if>
+							<a class="bt"
+								href="detalheLivro?id=<%=((Livro) request.getAttribute("livroEncontrado")).getId()%>">Detalhes</a>
+						</div>
+					</div>
 				</div>
-				<script src="scripts/validador.js"></script>
+
+
 
 
 			</div>
@@ -181,6 +155,7 @@ response.setDateHeader("Expires", 0); // Proxies.
 
 
 	</div>
+	<script src="scripts/validador.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
@@ -194,24 +169,5 @@ response.setDateHeader("Expires", 0); // Proxies.
 		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
 		crossorigin="anonymous"></script>
 	<script src="js/datatables-simple-demo.js"></script>
-	<script>
-	function visualizarImg(fotoembase64, filefoto) {
-
-        var preview = document.getElementById(fotoembase64); //campo IMG html
-        var fileUser = document.getElementById(filefoto).files[0];
-        var reader = new FileReader();
-
-        reader.onloadend = function () {
-            preview.src = reader.result; //carrega a foto na tela
-
-        };
-
-        if (fileUser) {
-            reader.readAsDataURL(fileUser); /Preview da imagem/
-        }else {
-            preview.src= '';
-        }
-    }
-	</script>
 </body>
 </html>

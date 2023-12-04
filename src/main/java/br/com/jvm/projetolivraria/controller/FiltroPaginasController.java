@@ -13,7 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter(urlPatterns = {"/main", "/novo.jsp", "/select"})
+@WebFilter(urlPatterns = {"/main", "/novo.jsp", "/select", "/detalheLivro", "/procurarLivro",
+		"/usuarioSelect", "/mainUsuario"})
 public class FiltroPaginasController implements Filter {
 
 	public FiltroPaginasController() {
@@ -33,9 +34,16 @@ public class FiltroPaginasController implements Filter {
 		
 		HttpSession sessao = httpServletRequest.getSession();
 		
+		String perfil = (String) sessao.getAttribute("perfil");
+		
+		
+		
 		if (sessao.getAttribute("usuAutenticado") != null || url.lastIndexOf("index.jsp")>-1
-				|| url.lastIndexOf("autenticador") >-1) {
-		chain.doFilter(request, response); 
+				|| url.lastIndexOf("autenticador") >-1 || "administrador".equals(perfil)) {
+		
+		
+			
+			chain.doFilter(request, response); 
 		} else {
 			((HttpServletResponse) response).sendRedirect("index.jsp");
 		}

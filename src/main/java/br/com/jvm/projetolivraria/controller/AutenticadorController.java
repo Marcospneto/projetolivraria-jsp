@@ -48,13 +48,34 @@ public class AutenticadorController extends HttpServlet {
 			Usuario usuAutenticado = usuarioDao.autenticarUsuario(usuario);
 
 			if (usuAutenticado != null) {
-				HttpSession sessao = request.getSession();
-				sessao.setAttribute("usuAutenticado", usuAutenticado);
-				response.sendRedirect("main");
-			} else {
-				response.sendRedirect("erroLogin.jsp");
+			    HttpSession sessao = request.getSession();
+			    sessao.setAttribute("usuAutenticado", usuAutenticado);
 
+			    String perfil = usuAutenticado.getPerfil();
+			    System.out.println("Ta por aq:" + perfil);
+			    String loginSession = usuAutenticado.getLogin();
+			    
+			    sessao.setAttribute("loginSession", loginSession);
+			    sessao.setAttribute("perfil", perfil);
+			    
+			    if ("administrador".equals(perfil)) {
+			        sessao.setAttribute("perfil", "administrador");
+			    } else {
+			        sessao.setAttribute("perfil", "usuario");
+			    }
+			    
+			    response.sendRedirect("main");
+			} // Se a autenticação falhar
+			// Se a autenticação falhar
+			else {
+			    request.setAttribute("mensagemErro", "Conta inválida!");
+			    request.getRequestDispatcher("index.jsp").forward(request, response);
 			}
+
+
+
+			
+
 
 		} catch (Exception e) {
 			System.out.println(e);
