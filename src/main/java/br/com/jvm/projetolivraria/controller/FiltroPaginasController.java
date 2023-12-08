@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @WebFilter(urlPatterns = {"/main", "/novo.jsp", "/select", "/detalheLivro", "/procurarLivro",
-		"/usuarioSelect", "/mainUsuario"})
+		"/usuarioSelect", "/mainUsuario", "/livroNaoEncontrado.jsp"})
 public class FiltroPaginasController implements Filter {
 
 	public FiltroPaginasController() {

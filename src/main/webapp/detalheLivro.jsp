@@ -130,7 +130,7 @@ response.setDateHeader("Expires", 0); // Proxies.
 					<div class="card2">
 						<div class="img-card2">
 							<img style="width: 100%; height: 665px;"
-								src="imagens/imagemlivraria.jpeg">
+								src="imagens/newlogo.png">
 						</div>
 					</div>
 				</div>
